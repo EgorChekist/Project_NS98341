@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ПРОЕКТ</title>
+    <link rel="stylesheet" href="{% static 'file.css'%}">
+</head>
+<body>
+{% if user.is_authenticated %}
+<a href="/logout">Выйти</a>
+{% else %}
+<a href="/registration">Регистрация</a>
+<a href="/autorization">Авторизация</a>
+{% endif %}
+<div class="header">
+    <p>TODO LIST</p>
+
+</div>
+
+<div class="titles">
+{% for doings in TODO %}
+    <p class="titles-text">{{doings.text}}</p>
+    <p class="anti-text">{{doings.priority}}</p>
+    {% if doings.stick %}
+    <a href="todo/{{doings.id}}/update" class="stickerpack">✔</a>
+    {% else %}
+        <a href="todo/{{doings.id}}/update" class="stickerpack"></a>
+
+    {% endif %}
+    <a href="todo/{{doings.id}}/delete" class="deleterpack">❌</a>
+
+
+{% endfor %}
+
+<form action="/todo/puzzle" method="post">
+    {% csrf_token %}
+    <div>
+        <label class="task-text">Ваша задача</label><br>
+        <input type="text" name="task" class="form-input" placeholder="Купить помидоры">
+        <input type="number" min="1" name="priority" class="form-input-pr" placeholder="Приоритет">
+        <button type="submit" class="form-input-button">Озадачиться</button>
+    </div>
+</form>
+    </div>
+
+
+</body>
+</html>

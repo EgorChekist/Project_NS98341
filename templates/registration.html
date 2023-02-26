@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'file.css'%}">
+</head>
+<body class="registration-bg">
+    <p class="header">Регистрация</p>
+    <p class="thief-font">Регистрационные данные</p>
+    <p class="thief-font">Личные данные</p>
+    <br>
+<form action="/auth/puzzle_f" method="post">
+{% csrf_token %}
+<div>
+
+    <input type="text" name="login" class="form-input" placeholder="Логин" required>
+    <input type="text" name="name" class="form-input" placeholder="Имя" required>
+    <input type="text" name="password" class="form-input" placeholder="Пароль" required>
+    <input type="text" name="surname" class="form-input" placeholder="Фамилия" required>
+    <button type="submit" class="form-input-button">Зарегистрироваться</button>
+
+</div>
+</form>
+
+
+</body>
+</html>
